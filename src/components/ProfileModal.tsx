@@ -1,5 +1,8 @@
+import React, { useState } from 'react';
 import { UserCircle, Building2, Hash, Save, AlertTriangle, Phone, Mail, Camera, User as UserIcon } from 'lucide-react';
 import { motion } from 'motion/react';
+import { User } from '../types';
+import { mockAuthService } from '../services/mockDataService';
 
 interface ProfileModalProps {
   user: User;

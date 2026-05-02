@@ -8,6 +8,7 @@ export const NAV_LINKS = [
   { name: 'Hoạt động', href: '#activities' },
   { name: 'Tin tức', href: '#news' },
   { name: 'Câu lạc bộ', href: '#clubs' },
+  { name: 'Tham quan', href: '#visit-registration' },
   { name: 'Liên hệ', href: '#contact' },
 ];
 

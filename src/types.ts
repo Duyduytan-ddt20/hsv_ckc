@@ -33,6 +33,7 @@ export interface Article {
   authorId: string;
   category?: string;
   excerpt?: string;
+  gallery?: string[];
 }
 
 export interface SiteSettings {
@@ -42,6 +43,11 @@ export interface SiteSettings {
   logoUrl: string;
   heroTitle: string;
   heroSubtitle: string;
+  introContent?: string;
+  footerText?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  address?: string;
 }
 
 export interface User {
@@ -54,6 +60,12 @@ export interface User {
   role: 'USER' | 'ADMIN';
   avatar?: string;
   phoneNumber?: string;
+  password?: string;
+}
+
+export interface NavLink {
+  id: string;
+  label: string;
 }
 
 export interface CriterionItem {
@@ -93,4 +105,57 @@ export interface VolunteerCertificate {
   date: string;
   hours: number;
   issueDate: string;
+}
+
+export interface CertificateImage {
+  id: string;
+  studentName: string;
+  studentId?: string;
+  imageUrl: string;
+  issueDate: string;
+}
+
+export interface CertificateFolder {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  certificates: CertificateImage[];
+}
+
+export interface VisitRegistration {
+  id: string;
+  visitTime: string;
+  studentCount: number;
+  organization: string;
+  leaderName: string;
+  leaderPhone: string;
+  proposalFileUrl: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  createdAt: string;
+}
+
+export interface SocialTrend {
+  id: string;
+  topic: string;
+  hashtag: string;
+  volume: string;
+  sentiment: 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE';
+  change: string;
+}
+
+export interface UsageStat {
+  platform: string;
+  users: number;
+  avgTime: number;
+  color: string;
+}
+
+export interface EmergingIssue {
+  id: string;
+  title: string;
+  description: string;
+  source: string;
+  urgency: 'HIGH' | 'MEDIUM' | 'LOW';
+  timestamp: string;
 }

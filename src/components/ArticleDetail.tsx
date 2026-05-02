@@ -63,9 +63,30 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack })
               </div>
             </div>
 
-            <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed font-medium whitespace-pre-wrap">
+            <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed font-medium whitespace-pre-wrap mb-12">
               {article.content}
             </div>
+
+            {/* Gallery */}
+            {article.gallery && article.gallery.length > 0 && (
+              <div className="mb-12">
+                <h3 className="text-lg font-black uppercase tracking-widest text-slate-900 mb-6 flex items-center gap-2">
+                  <div className="w-2 h-6 bg-blue-600 rounded-full"></div>
+                  Hình ảnh đính kèm
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {article.gallery.map((img, i) => (
+                    <motion.div 
+                      key={i}
+                      whileHover={{ scale: 1.02 }}
+                      className="aspect-video rounded-2xl overflow-hidden shadow-sm border border-slate-100 cursor-pointer"
+                    >
+                      <img src={img} className="w-full h-full object-cover" alt={`Gallery ${i}`} />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="mt-16 pt-8 border-t border-slate-100 flex items-center justify-between">
               <div className="flex gap-4 text-slate-400">

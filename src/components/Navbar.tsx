@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Play, Calendar as CalendarIcon } from 'lucide-react';
+import { Menu, X, Play, Calendar as CalendarIcon, LogOut } from 'lucide-react';
 
 interface NavbarProps {
   view: string;
@@ -11,6 +11,7 @@ interface NavbarProps {
   selectedArticle: any;
   handleNavClick: (id: any) => void;
   setView: (view: string) => void;
+  onLogout: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -21,12 +22,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedArticle,
   handleNavClick,
   setView,
+  onLogout,
 }) => {
   const navItems = [
     { id: 'HOME', label: 'Trang chủ' },
     { id: 'INTRO', label: 'Giới thiệu' },
     { id: 'SV5T', label: 'Sinh viên 5 tốt' },
     { id: 'NEWS', label: 'Tin tức' },
+    { id: 'CERTIFICATES', label: 'Tra cứu GCN' },
     { id: 'CONTACT', label: 'Liên hệ' },
   ];
 
@@ -48,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navItems.map((item) => (
             <button 
               key={item.id}
-              onClick={() => (item.id === 'HOME' || item.id === 'SV5T') ? handleNavClick(item.id as any) : null}
+              onClick={() => handleNavClick(item.id as any)}
               className={`px-4 h-full flex items-center text-[10px] font-black uppercase tracking-widest transition-all relative group ${
                 (view === item.id || (item.id === 'HOME' && view === 'HOME' && !selectedArticle)) 
                   ? 'text-blue-600' : 'text-slate-400 hover:text-blue-600'
@@ -79,6 +82,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="w-1.5 h-1.5 bg-amber-400 rounded-full group-hover:animate-ping"></div>
               <span className="hidden sm:inline">{view === 'ADMIN' ? 'TRANG CHỦ' : 'QUẢN TRỊ'}</span>
               <span className="sm:hidden">{view === 'ADMIN' ? 'HOME' : 'AD'}</span>
+            </button>
+          )}
+
+          {currentUser && (
+            <button 
+              onClick={onLogout}
+              className="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition-all border border-slate-100"
+              title="Đăng xuất"
+            >
+              <LogOut className="h-4 w-4" />
             </button>
           )}
         </div>
